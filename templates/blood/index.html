@@ -1,0 +1,571 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Bank Management</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+        }
+        
+        /* Navbar Styles */
+        .navbar {
+            padding: 15px 0;
+            background-color: rgba(255, 255, 255, 0.95) !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: #e74c3c !important;
+        }
+        
+        .navbar-brand i {
+            margin-right: 8px;
+        }
+        
+        .nav-link {
+            font-weight: 600;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: #e74c3c !important;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #e74c3c;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .login-btn {
+            background-color: #e74c3c;
+            color: white !important;
+            border-radius: 30px;
+            padding: 8px 20px !important;
+            transition: all 0.3s ease;
+        }
+        
+        .login-btn:hover {
+            background-color: #c0392b;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            background: url('{% static "image/homepage.png" %}') no-repeat center center/cover;
+            height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 20px;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-buttons .btn {
+            margin: 10px;
+            padding: 12px 25px;
+            font-weight: 600;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background-color: #e74c3c;
+            border-color: #e74c3c;
+        }
+        
+        .btn-primary:hover {
+            background-color: #c0392b;
+            border-color: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-outline-light:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Info Cards Section */
+        .info-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: #e74c3c;
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+        
+        .info-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .card-icon {
+            font-size: 3rem;
+            color: #e74c3c;
+            margin-bottom: 20px;
+        }
+        
+        .info-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .info-card-body {
+            padding: 30px;
+        }
+        
+        /* Blood Types Section */
+        .blood-types-section {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .blood-type-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            text-align: center;
+            padding: 30px 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+        }
+        
+        .blood-type-card:hover {
+            background: #e74c3c;
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .blood-type {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        /* Stats Section */
+        .stats-section {
+            padding: 60px 0;
+            background: url('{% static "image/stats-bg.jpg" %}') no-repeat center center/cover;
+            position: relative;
+            color: white;
+        }
+        
+        .stats-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(231, 76, 60, 0.85);
+        }
+        
+        .stats-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+        
+        .stat-item {
+            margin-bottom: 30px;
+        }
+        
+        .stat-value {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+            text-align: center;
+        }
+        
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .cta-content h2 {
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+        
+        .cta-content p {
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: #222;
+            color: #aaa;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-links h4 {
+            color: white;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-links h4:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background: #e74c3c;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #e74c3c;
+            padding-left: 5px;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            background: #333;
+            color: white;
+            border-radius: 50%;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: #e74c3c;
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fas fa-heartbeat"></i> LifeBlood</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="donor/donorlogin">Donate</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="patient/patientlogin">Request Blood</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <a class="nav-link login-btn" href="adminlogin"><i class="fas fa-sign-in-alt"></i> Login as Admin</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Blood Bank</h1>
+            <p>Your donation can be the gift of life for someone in need. Join our community of donors today.</p>
+            <div class="hero-buttons">
+                <a href="donor/donorlogin" class="btn btn-primary btn-lg"><i class="fas fa-hand-holding-heart"></i> Donate Now</a>
+                <a href="#" class="btn btn-outline-light btn-lg"><i class="fas fa-info-circle"></i> Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info Cards Section -->
+    <section class="info-section">
+        <div class="container">
+            <h2 class="section-title">How You Can Help</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="info-card">
+                        <div class="info-card-body">
+                            <div class="card-icon">
+                                <i class="fas fa-user-plus"></i>
+                            </div>
+                            <h3>Become a Donor</h3>
+                            <p>Register as a blood donor and help save lives. It takes just a few minutes to register and make a lifelong impact.</p>
+                            <a href="donor/donorlogin" class="btn btn-sm btn-outline-danger mt-3">Register Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="info-card">
+                        <div class="info-card-body">
+                            <div class="card-icon">
+                                <i class="fas fa-hospital-user"></i>
+                            </div>
+                            <h3>Patient Services</h3>
+                            <p>Need blood? Our system helps connect patients with the right donors quickly in emergency situations.</p>
+                            <a href="patient/patientlogin" class="btn btn-sm btn-outline-danger mt-3">Request Blood</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="info-card">
+                        <div class="info-card-body">
+                            <div class="card-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h3>Organize Drive</h3>
+                            <p>Host a blood donation drive in your community, workplace, or educational institution.</p>
+                            <a href="#" class="btn btn-sm btn-outline-danger mt-3">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blood Types Section -->
+    <section class="blood-types-section">
+        <div class="container">
+            <h2 class="section-title">Blood Types</h2>
+            <div class="row">
+                <div class="col-6 col-md-3">
+                    <div class="blood-type-card">
+                        <div class="blood-type">A+</div>
+                        <p>Can donate to: A+, AB+</p>
+                        <p>Can receive from: A+, A-, O+, O-</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="blood-type-card">
+                        <div class="blood-type">A-</div>
+                        <p>Can donate to: A+, A-, AB+, AB-</p>
+                        <p>Can receive from: A-, O-</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="blood-type-card">
+                        <div class="blood-type">B+</div>
+                        <p>Can donate to: B+, AB+</p>
+                        <p>Can receive from: B+, B-, O+, O-</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="blood-type-card">
+                        <div class="blood-type">B-</div>
+                        <p>Can donate to: B+, B-, AB+, AB-</p>
+                        <p>Can receive from: B-, O-</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="blood-type-card">
+                        <div class="blood-type">AB+</div>
+                        <p>Can donate to: AB+</p>
+                        <p>Can receive from: All blood types</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="blood-type-card">
+                        <div class="blood-type">AB-</div>
+                        <p>Can donate to: AB+, AB-</p>
+                        <p>Can receive from: A-, B-, AB-, O-</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="blood-type-card">
+                        <div class="blood-type">O+</div>
+                        <p>Can donate to: A+, B+, AB+, O+</p>
+                        <p>Can receive from: O+, O-</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="blood-type-card">
+                        <div class="blood-type">O-</div>
+                        <p>Can donate to: All blood types</p>
+                        <p>Can receive from: O-</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+
+    
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="footer-links">
+                        <h4>LifeBlood</h4>
+                        <p>LifeBlood is dedicated to making blood donation accessible and efficient. Our mission is to ensure that blood is available to anyone who needs it, whenever they need it.</p>
+                        <div class="social-links mt-4">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <div class="footer-links">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Donate</a></li>
+                            <li><a href="#">Request Blood</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="footer-links">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="#">Donation Process</a></li>
+                            <li><a href="#">Eligibility Criteria</a></li>
+                            <li><a href="#">FAQs</a></li>
+                            <li><a href="#">Blood Types</a></li>
+                            <li><a href="#">Blood Facts</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="footer-links">
+                        <h4>Contact Us</h4>
+                        <ul>
+                            <li><i class="fas fa-map-marker-alt me-2"></i> 123 Medical Drive, Health City</li>
+                            <li><i class="fas fa-phone me-2"></i> (123) 456-7890</li>
+                            <li><i class="fas fa-envelope me-2"></i> info@lifeblood.org</li>
+                            <li><i class="fas fa-clock me-2"></i> Mon-Fri: 9AM-5PM</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 LifeBlood. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
