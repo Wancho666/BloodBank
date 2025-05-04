@@ -1,72 +1,110 @@
-{%load static%}
+{% load static %}
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <style>
-        .logo{
-      
-  display: table;
-  margin-right: auto;
-  margin-left: auto;
-        }
-    </style>
-  </head>
-  <body>
-    {% include "blood/navbar.html" %}
-    <br><br><br><br><br><br>
-<div class="container"> 
-    
-    <!-- Middle Content Start -->
-    
-    <div class="vd_content-wrapper" style="min-height: 8px;">
-      <div class="vd_container" style="min-height: 8px;">
-        <div class="vd_content clearfix">
-          <div class="vd_content-section clearfix">
-            <div class="vd_register-page">
-              <div class="heading clearfix">
-                <div class="logo">
-                  <h2><img src="{% static "image/logout.png" %}" alt="logo"></h2>
-                </div>
-              </div>
-              <div class="panel widget">
-                <div class="panel-body">
-                  <div class="login-icon"> <i class="fa fa-sign-out"></i> </div>
-                  <h1 class="font-semibold text-center" style="font-size:52px">You Have Been Logged Out</h1>
-                  <form class="form-horizontal" action="#" role="form">
-                    <div class="form-group">
-                      <div class="col-md-12">
-                        <h4 class="text-center mgbt-xs-20">Thank you for using Blood Bank System</h4>
-                       
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Logged Out | LifeBlood</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('{% static "image/blood-bg.jpg" %}') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      color: #fff;
+    }
 
-                      </div>
-                    </div>
-                   
-                  </form>
-                </div>
-              </div>
-              <!-- Panel Widget -->
-              
-            </div>
-            <!-- vd_login-page --> 
-            
-          </div>
-          <!-- .vd_content-section --> 
-          
-        </div>
-        <!-- .vd_content --> 
+    .logout-section {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 20px;
+    }
+
+    .logout-card {
+      backdrop-filter: blur(15px);
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 50px 30px;
+      text-align: center;
+      max-width: 600px;
+      width: 100%;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+      animation: fadeIn 0.6s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .logout-logo img {
+      width: 120px;
+      margin-bottom: 25px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.2);
+      padding: 10px;
+    }
+
+    .logout-title {
+      font-size: 38px;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .logout-message {
+      font-size: 18px;
+      font-weight: 300;
+      margin-bottom: 30px;
+      color: #f8f8f8;
+    }
+
+    .btn-home {
+      background-color: rgba(231, 76, 60, 0.9);
+      color: #fff;
+      font-weight: 500;
+      padding: 12px 30px;
+      border-radius: 50px;
+      border: none;
+      font-size: 16px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .btn-home:hover {
+      background-color: rgba(192, 57, 43, 0.95);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(231, 76, 60, 0.4);
+    }
+
+    footer {
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+
+  {% include "blood/navbar.html" %}
+
+  <div class="logout-section">
+    <div class="logout-card">
+      <div class="logout-logo">
+        <img src="{% static 'image/logout.png' %}" alt="Logout Icon">
       </div>
-      <!-- .vd_container --> 
+      <h1 class="logout-title">You’ve Been Logged Out</h1>
+      <p class="logout-message">Thanks for using LifeBlood. We’ll be here when you return. Stay safe and healthy!</p>
+      <a href="{% url '' %}" class="btn btn-home">Return to Homepage</a>
     </div>
-    <!-- .vd_content-wrapper --> 
-    
-    <!-- Middle Content End --> 
-    
   </div>
-<br><br><br>
-<br><br><br>
-{% include "blood/footer.html" %}
 
-  </body>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>

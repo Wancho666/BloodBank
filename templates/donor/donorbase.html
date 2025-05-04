@@ -3,207 +3,261 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DONOR</title>
-
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.css">
-
+    <title>Donor Dashboard | LifeBlood</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-
-
-
- 
-
-    .row{
-        padding: 5px;
-    }
-    .fa-tint{     
-        color: red;    
-    }
-    .blood{
-        float: right;
-    }
-    .fa-users{     
-        color: blue; 
-        font-size: 3ex;   
-    }
-    .fa-spinner{     
-        color: blue; 
-        font-size: 3ex;   
-    }
-    .fa-check-circle{     
-        color: blue; 
-        font-size: 3ex;   
-    }
-    .xyz{     
-        color: blue; 
-        font-size: 3ex;   
-    }
-
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  list-style: none;
-  text-decoration: none;
-  font-family: 'Josefin Sans', sans-serif;
-}
-
-body{
-   background-color: #f3f5f9;
-}
-.bg-danger {
-    background-color: #c32d22!important;
-}
-
-.wrapper{
-  display: flex;
-  position: relative;
-}
-
-.wrapper .sidebar{
-  width: 200px;
-  height: 100%;
-  background: 	#343a40;
-  padding: 30px 0px;
-  position: fixed;
-}
-
-.wrapper .sidebar h2{
-  color: #fff;
-  text-transform: uppercase;
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.wrapper .sidebar ul li{
-  padding: 15px;
-  border-bottom: 1px solid#dedede;
-  border-bottom: 1px solid rgba(0,0,0,0.05);
-  border-top: 1px solid rgba(255,255,255,0.05);
-}    
-
-.wrapper .sidebar ul li a{
-  color:#dedede;
-  display: block;
-}
-
-.wrapper .sidebar ul li a .fas{
-  width: 25px;
-}
-
-.wrapper .sidebar ul li:hover{
-  background-color: #7a7a7a;
-}
-    
-.wrapper .sidebar ul li:hover a{
-  color: #fff;
-}
- 
-.wrapper .sidebar .social_media{
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-}
-
-.wrapper .sidebar .social_media a{
-  display: block;
-  width: 40px;
-  background: #594f8d;
-  height: 40px;
-  line-height: 45px;
-  text-align: center;
-  margin: 0 5px;
-  color:#dedede;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-}
-
-.wrapper .main_content{
-  width: 100%;
-  margin-left: 200px;
-}
-
-.wrapper .main_content .header{
-  padding: 20px;
-  background: #fff;
-  color: #717171;
-  border-bottom: 1px solid #e0e4e8;
-}
-
-.wrapper .main_content .info{
-  margin: 20px;
-  color: #717171;
-  line-height: 25px;
-}
-
-.wrapper .main_content .info div{
-  margin-bottom: 20px;
-}
-
-@media (max-height: 500px){
-  .social_media{
-    display: none !important;
-  }
-}
-.fa-sign-out-alt{
-    color: white;
-    font-size: 2ex;
-}
-
+        /* General Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        /* Navbar Styles */
+        .navbar {
+          padding: 15px 0;
+          background-color: rgba(255, 255, 255, 0.95) !important;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+      
+      .navbar-brand {
+          font-weight: 700;
+          color: #e74c3c !important;
+      }
+      
+      .navbar-brand i {
+          margin-right: 8px;
+      }
+      
+      .nav-link {
+          font-weight: 600;
+          margin: 0 10px;
+          transition: all 0.3s ease;
+          position: relative;
+      }
+      
+      .nav-link:hover {
+          color: #e74c3c !important;
+      }
+      
+      .nav-link::after {
+          content: '';
+          position: absolute;
+          width: 0;
+          height: 2px;
+          bottom: 0;
+          left: 0;
+          background-color: #e74c3c;
+          transition: width 0.3s ease;
+      }
+      
+      .nav-link:hover::after {
+          width: 100%;
+      }
+        
+        .logout-btn {
+            background-color:  #e74c3c;
+            color: white !important;
+            border-radius: 30px;
+            padding: 8px 20px !important;
+            transition: all 0.3s ease;
+        }
+        
+        .logout-btn:hover {
+            background-color: rgba(206, 37, 37, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        /* Wrapper and Sidebar */
+        .wrapper {
+            display: flex;
+            position: relative;
+            min-height: calc(100vh - 70px);
+        }
+        
+        .wrapper .sidebar {
+            width: 250px;
+            background: #333;
+            padding: 30px 0;
+            position: fixed;
+            height: 100%;
+            box-shadow: 3px 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+        
+        .wrapper .sidebar h2 {
+            color: #fff;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+        
+        .wrapper .sidebar ul {
+            padding: 0;
+        }
+        
+        .wrapper .sidebar ul li {
+            padding: 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .wrapper .sidebar ul li a {
+            color: #ddd;
+            display: block;
+            padding: 15px 25px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .wrapper .sidebar ul li a i {
+            width: 25px;
+            margin-right: 10px;
+        }
+        
+        .wrapper .sidebar ul li:hover {
+            background-color: rgba(231, 76, 60, 0.8);
+        }
+        
+        .wrapper .sidebar ul li:hover a {
+            color: #fff;
+            padding-left: 30px;
+        }
+        
+        .wrapper .sidebar ul li.active {
+            background-color: #e74c3c;
+        }
+        
+        .wrapper .sidebar ul li.active a {
+            color: #fff;
+        }
+        
+        /* Main Content */
+        .main_content {
+            width: 100%;
+            margin-left: 250px;
+            padding: 30px;
+        }
+        
+        .main_content .header {
+            background: white;
+            color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        
+        .main_content .info {
+            color: #555;
+            line-height: 25px;
+        }
+        
+        .main_content .info div {
+            margin-bottom: 20px;
+        }
+        
+        /* Cards and Icons */
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: none;
+            margin-bottom: 20px;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .fa-tint {
+            color: #e74c3c;
+        }
+        
+        .fa-users, .fa-spinner, .fa-check-circle, .xyz {
+            color: #3498db;
+            font-size: 3ex;
+        }
+        
+        .blood {
+            float: right;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .wrapper .sidebar {
+                width: 100%;
+                position: relative;
+                height: auto;
+                padding: 15px 0;
+            }
+            
+            .wrapper {
+                flex-direction: column;
+            }
+            
+            .main_content {
+                margin-left: 0;
+                padding: 15px;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/"><i class="fas fa-heartbeat"></i> LifeBlood</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link logout-btn" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-danger">
-        <a style="color:white;" class="navbar-brand" href="/"><i class="fa fa-heartbeat"></i>&nbsp;<font face = "Comic sans MS" size ="4">Blood Bank Management System</font></a>
-        
-      
-        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" style="color: white;" href="/logout">Logout &nbsp; <i class="fa fa-power-off"></i></a>
-                </li>
-                
+    <div style="margin-top: 70px;"></div>
+    
+    <!-- Wrapper with Sidebar and Main Content -->
+    <div class="wrapper">
+        <div class="sidebar">
+            <ul>
+                <li><a href="/"><i class="fas fa-home"></i>Home</a></li>
+                <li><a href="/donor/donate-blood"><i class="fas fa-hand-holding-medical"></i>Donate Blood</a></li>
+                <li><a href="/donor/donation-history"><i class="fas fa-history"></i>Donation History</a></li>
+                <li><a href="/donor/make-request"><i class="fas fa-user-plus"></i>Blood Request</a></li>
+                <li><a href="/donor/request-history"><i class="fas fa-history"></i>Request History</a></li>
             </ul>
         </div>
-      </nav>
-<br><br>
-<div class="wrapper">
-    <div class="sidebar">
         
-        <ul>
-            <li><a style="text-decoration:none;" href="/"><i class="fas fa-home"></i>Home</a></li>
-            <li><a style="text-decoration:none;" href="/donor/donate-blood"><i class="fas fa-hand-holding-medical"></i>Donate Blood</a></li>
-            <li><a style="text-decoration:none;" href="/donor/donation-history"><i class="fas fa-history"></i>Donation History</a></li>
-            <li><a style="text-decoration:none;" href="/donor/make-request"><i class="fas fa-user-plus"></i>Blood Request</a></li>
-            <li><a style="text-decoration:none;" href="/donor/request-history"><i class="fas fa-history"></i>Request History</a></li>
-
-        
-        </ul> 
-
+        <div class="main_content">
+            {% block content %}
+            <!-- Content will be inserted here -->
+            {% endblock content %}
+        </div>
     </div>
-    <div class="main_content">
 
-
-{% block content %}
-
-{% endblock content %}
-
-
-
-    </div>
-</div>
-
-<!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Add 'active' class to current page in sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPath = window.location.pathname;
+            const sidebarLinks = document.querySelectorAll('.sidebar ul li a');
+            
+            sidebarLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPath) {
+                    link.parentElement.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>

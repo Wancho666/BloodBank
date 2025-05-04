@@ -1,70 +1,119 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.css">
+  <title>LifeBlood | Welcome</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <!-- Bootstrap 5 and Font Awesome -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
-  <style type="text/css">
-    .bs-example {
-      margin: 0px;
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f8f9fa;
+      color: #333;
+    }
 
+    .navbar {
+      padding: 15px 0;
+      background-color: rgba(255, 255, 255, 0.95) !important;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
 
     .navbar-brand {
-      font-size: 20px;
-      font-family: sans-serif;
+      font-weight: 700;
+      color: #e74c3c !important;
+    }
 
+    .navbar-brand i {
+      margin-right: 8px;
+    }
+
+    .nav-link {
+      font-weight: 600;
+      margin: 0 10px;
+      transition: all 0.3s ease;
+      position: relative;
+      color: #333 !important;
+    }
+
+    .nav-link:hover {
+      color: #e74c3c !important;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: #e74c3c;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .btn-custom {
+      background-color: #e74c3c;
+      color: white !important;
+      border-radius: 30px;
+      padding: 8px 20px !important;
+      transition: all 0.3s ease;
+    }
+
+    .btn-custom:hover {
+      background-color: rgba(206, 37, 37, 0.3);
+      transform: translateY(-2px);
+    }
+
+    /* Responsive adjustment */
+    @media (max-width: 768px) {
+      .nav-link {
+        margin: 10px 0;
+      }
     }
   </style>
 </head>
 
 <body>
-
-
-
-  <div class="bs-example">
-    <nav style="background-color: #c32d22;" class="navbar navbar-expand-md navbar-dark fixed-top">
-      <a href="/" class="navbar-brand"><i class="fas fa-heartbeat"></i>&nbsp; Blood Bank Management System</a>
-      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="/"><i class="fas fa-heartbeat"></i> LifeBlood</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-
-
-        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" style="color: white;" href="/"><i class="fas fa-home"></i>&nbsp; Home</i></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" style="color: white;" href="/patient/patientlogin"><i class="fas fa-procedures"></i>&nbsp; Patient</i></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" style="color: white;" href="/donor/donorlogin"><i class="fas fa-user"></i>&nbsp; Donor</i></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" style="color: white;" href="/adminlogin"><i class="fas fa-user-shield"></i>&nbsp; Admin</i></a>
-                </li>
-                
-            </ul>
-        </div>
-
-
-
-
+      <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/patient/patientlogin"><i class="fas fa-procedures"></i> Patient</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/donor/donorlogin"><i class="fas fa-user"></i> Donor</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/adminlogin"><i class="fas fa-user-shield"></i> Admin</a>
+          </li>
+        </ul>
       </div>
-    </nav>
-  </div>
+    </div>
+  </nav>
 
+  <!-- Page content spacing -->
+  <div style="margin-top: 80px;"></div>
 
+  <!-- Optional Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
