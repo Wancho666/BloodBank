@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'blood',
     'donor',
     'patient',
-    
 ]
 
 MIDDLEWARE = [
@@ -126,21 +125,24 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS=[
-STATIC_DIR,
- ]
+    STATIC_DIR,
+]
 LOGIN_REDIRECT_URL='/afterlogin'
 
-#for contact us give your gmail id and password
+# For contact us, provide your Gmail ID and password
 EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'from@gmail.com' # this email will be used to send emails
-EMAIL_HOST_PASSWORD = 'xyz' # host email password required
-# now sign in with your host gmail account in your browser
-# open following link and turn it ON
+EMAIL_HOST_USER = 'from@gmail.com' # This email will be used to send emails
+EMAIL_HOST_PASSWORD = 'xyz' # Host email password required
+# Now sign in with your host Gmail account in your browser
+# Open the following link and turn it ON
 # https://myaccount.google.com/lesssecureapps
-# otherwise you will get SMTPAuthenticationError at /contactus
-# this process is required because google blocks apps authentication by default
-EMAIL_RECEIVING_USER = ['to@gmail.com'] # email on which you will receive messages sent from website
+# Otherwise, you will get SMTPAuthenticationError at /contactus
+# This process is required because Google blocks apps authentication by default
+EMAIL_RECEIVING_USER = ['to@gmail.com'] # Email on which you will receive messages sent from the website
 
+
+# New setting to fix primary key warnings
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
